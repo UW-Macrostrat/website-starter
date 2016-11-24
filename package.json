@@ -4,6 +4,7 @@
   "description": "Boilerplate for a website",
   "main": "index.html",
   "scripts": {
+    "postinstall": "gulp deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "John J Czaplewski <john@czaplewski.org>",
