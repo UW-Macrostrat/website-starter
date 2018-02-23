@@ -17,10 +17,4 @@ class ExampleComponent extends Component {
   }
 }
 
-ExampleComponent.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  msg: PropTypes.string.isRequired,
-  clicks: PropTypes.number.isRequired
-}
-
 export default ExampleComponent

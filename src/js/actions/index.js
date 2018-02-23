@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import axios from 'axios'
 import { addCommas } from '../utils'
 
 // Define constants to be passed with actions
@@ -15,9 +15,10 @@ export const pageClick = () => {
   }
 }
 
-export function requestData() {
+export function requestData(cancelToken) {
   return {
-    type: REQUEST_DATA
+    type: REQUEST_DATA,
+    cancelToken: cancelToken
   }
 }
 
@@ -37,12 +38,21 @@ function formatResponse(data) {
 export const fetchData = () => {
   return function (dispatch) {
 
-    // Update state to know what is being fetched
-    dispatch(requestData())
+    let CancelToken = axios.CancelToken
+    let source = CancelToken.source()
 
-    return fetch('')
-      .then(response => response.json())
-      .then(formatted => formatResponse(formatted.success.data))
-      .then(json => dispatch(recieveDictionaries(json)))
+    // Update state to know what is being fetched
+    dispatch(requestData(source))
+
+    return axios.get('', {
+      cancelToken: source.token,
+      responseType: 'json'
+    })
+    .then(json => formatResponse(json.success.data))
+    .then(json => dispatch(recieveDictionaries(json)))
+    .catch(error => {
+      // don't care 💁
+      // Or handle
+    })
   }
 }

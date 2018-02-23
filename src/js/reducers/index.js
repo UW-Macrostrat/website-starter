@@ -1,20 +1,7 @@
 import { combineReducers } from 'redux'
 import { PAGE_CLICK, REQUEST_DATA, RECIEVE_DATA } from '../actions'
 
-// import all reducers here
-// const stats = (state = [], action) => {
-//   switch (action.type, state) {
-//     case TOGGLE_DICTIONARY:
-//       return Object.assign({}, state, {
-//         showDetails: action.dict_id
-//       })
-//
-//     default:
-//       return state
-//   }
-// }
-//
-
+// This is the initial state and the primary reducer
 const handleInteraction = (state = {
   isFetching: false,
   data: [],
@@ -46,7 +33,6 @@ const handleInteraction = (state = {
 
 const reducers = combineReducers({
   // list reducers here
-//  stats,
   handleInteraction
 })
 
